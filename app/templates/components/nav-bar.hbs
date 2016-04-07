@@ -8,6 +8,10 @@
   <span class="navbar-brand">
     {{inline-svg "dice-logo.svg"}}
   </span>
+  <span class="navbar-brand hidden-md hidden-lg">
+    {{entropy-meter completeText="View Entropy"
+                    onclick=(action (mut showEntropyViewer) true)}}
+  </span>
 </div>
 {{#bs-collapse tagName="nav" class="navbar-collapse" collapsed=headerCollapsed}}
   <ul class="nav navbar-nav">
@@ -15,4 +19,9 @@
       <a href="#" class="{{if link.active 'active'}}">Diceware</a>
     {{/link-to}}
   </ul>
+  {{entropy-meter class="nav navbar-text pull-right hidden-sm hidden-xs"
+                  completeText="View Entropy Harvesting"
+                  onclick=(action (mut showEntropyViewer) true)}}
 {{/bs-collapse}}
+{{modal-entropy-viewer open=showEntropyViewer
+                       close=(action (mut showEntropyViewer) false)}}

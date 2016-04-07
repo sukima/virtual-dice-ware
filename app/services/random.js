@@ -4,6 +4,8 @@ const SAMPLE_SIZE = 256;
 const REHASH_INTERVAL = 200;
 
 export default Ember.Service.extend({
+  pollingEnabled: true,
+
   init() {
     this.set('pollEntropyCount', 0);
     this.set('generator', uheprng());
@@ -17,9 +19,11 @@ export default Ember.Service.extend({
   },
 
   pollEntropy() {
-    this.addEntropy();
-    this.incrementProperty('pollEntropyCount');
-    Ember.run.later(this, 'pollEntropy', REHASH_INTERVAL);
+    if (this.get('pollingEnabled')) {
+      this.addEntropy();
+      this.incrementProperty('pollEntropyCount');
+      Ember.run.later(this, 'pollEntropy', REHASH_INTERVAL);
+    }
   },
 
   dieRoll(sides=6) {
