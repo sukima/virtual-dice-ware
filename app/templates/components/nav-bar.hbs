@@ -1,0 +1,18 @@
+<div class="navbar-header">
+  <button class="navbar-toggle" type="button" {{action "toggleCollapsed"}}>
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <span class="navbar-brand">
+    {{inline-svg "dice-logo.svg"}}
+  </span>
+</div>
+{{#bs-collapse tagName="nav" class="navbar-collapse" collapsed=headerCollapsed}}
+  <ul class="nav navbar-nav">
+    {{#link-to "index" tagName="li" as |link|}}
+      <a href="#" class="{{if link.active 'active'}}">Diceware</a>
+    {{/link-to}}
+  </ul>
+{{/bs-collapse}}
