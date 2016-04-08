@@ -3,8 +3,9 @@ import ProgressComponent from 'ember-bootstrap/components/bs-progress';
 
 export default ProgressComponent.extend({
   random: Ember.inject.service(),
-  classNames: ['entropy-meter'],
-  classNameBindings: ['attrs.onclick:clickable'],
+  classNames: ['entropy-meter', 'clickable'],
+
+  isPolling: Ember.computed.alias('random.pollingEnabled'),
 
   completeText: 'Complete',
 
@@ -18,9 +19,18 @@ export default ProgressComponent.extend({
 
   complete: Ember.computed.equal('percent', 100),
 
-  click() {
-    if (this.attrs.onclick) {
-      this.attrs.onclick();
+  meterType: Ember.computed('complete', 'isPolling', function() {
+    if (!this.get('isPolling')) {
+      return 'warning';
+    } else if (this.get('complete')) {
+      return 'success';
+    } else {
+      return 'default';
     }
+  }),
+
+  click() {
+    this.toggleProperty('isPolling');
+    this.get('random').pollEntropy();
   }
 });

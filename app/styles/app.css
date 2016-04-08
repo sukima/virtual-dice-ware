@@ -2,6 +2,10 @@
   width: 200px;
 }
 
+.entropy-viewer {
+  max-width: 500px;
+}
+
 .clickable {
   cursor: pointer;
 }

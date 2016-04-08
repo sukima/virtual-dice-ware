@@ -1,13 +1,17 @@
 {{#bs-progress-bar animate=random.pollingEnabled
                    striped=true
                    showLabel=true
-                   type=(if complete 'success' 'default')
+                   type=meterType
                    value=percent
                    minValue=0
                    maxValue=100 as |percent|}}
-  {{#if complete}}
-    {{completeText}}
+  {{#if isPolling}}
+    {{#if complete}}
+      Harvesting Entropy
+    {{else}}
+      Initializing… {{percent}}
+    {{/if}}
   {{else}}
-    Initializing… {{percent}}
+    Paused Entropy Harvesting
   {{/if}}
 {{/bs-progress-bar}}

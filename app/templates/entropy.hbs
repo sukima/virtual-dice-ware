@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>
+      Entropy Harvesting Statistics
+    </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      This is the active entropy in the system at this time.
+      {{bs-button action="togglePolling"
+                  defaultText=(if random.pollingEnabled 'Pause' 'Resume')}}
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    {{entropy-viewer}}
+  </div>
+</div>
