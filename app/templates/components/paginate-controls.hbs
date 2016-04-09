@@ -1,0 +1,15 @@
+<ul class="pagination">
+  <li class="{{if isFirstPage 'disabled'}}">
+    <a href="#" {{action "first"}}><span class="glyphicon glyphicon-fast-backward"></span></a>
+  </li>
+  <li class="{{if isFirstPage 'disabled'}}">
+    <a href="#" {{action "prev"}}><span class="glyphicon glyphicon-step-backward"></span></a>
+  </li>
+  <li class="disabled"><a>Page {{page}} of {{lastPage}} ({{pluralize count "word"}})</a></li>
+  <li class="{{if isLastPage 'disabled'}}">
+    <a href="#" {{action "next"}}><span class="glyphicon glyphicon-step-forward"></span></a>
+  </li>
+  <li class="{{if isLastPage 'disabled'}}">
+    <a href="#" {{action "last"}}><span class="glyphicon glyphicon-fast-forward"></span></a>
+  </li>
+</ul>

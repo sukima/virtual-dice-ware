@@ -20,6 +20,9 @@
     {{#link-to "entropy" tagName="li" as |link|}}
       <a href="#" class="{{if link.active 'active'}}">Entropy Viewer</a>
     {{/link-to}}
+    {{#link-to "words" tagName="li" as |link|}}
+      <a href="#" class="{{if link.active 'active'}}">Word List</a>
+    {{/link-to}}
   </ul>
   {{entropy-meter class="nav navbar-text pull-right hidden-sm hidden-xs"}}
 {{/bs-collapse}}

@@ -1,0 +1,14 @@
+<table class="table table-striped">
+  <tbody>
+    {{#each diceCodes as |key|}}
+      <tr>
+        <td>{{dice-code code=key}}</td>
+        <td class="word-list-item"><code>{{get words key}}</code></td>
+      </tr>
+    {{else}}{{#if noResultsText}}
+      <tr>
+        <td>{{noResultsText}}</td>
+      </tr>
+    {{/if}}{{/each}}
+  </tbody>
+</table>

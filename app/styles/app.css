@@ -9,3 +9,12 @@
 .clickable {
   cursor: pointer;
 }
+
+.die {
+  width: 32px;
+  height: 32px;
+}
+
+.word-list-item {
+  font-size: 1.4em;
+}
