@@ -5,6 +5,10 @@ const REHASH_INTERVAL = 200;
 
 export default Ember.Service.extend({
   pollingEnabled: true,
+  initialEntropyPercent: Ember.computed('pollEntropyCount', function() {
+    return Math.min(this.get('pollEntropyCount') * 4, 100);
+  }),
+  initialEntropyComplete: Ember.computed.equal('initialEntropyPercent', 100),
 
   init() {
     this.set('pollEntropyCount', 0);

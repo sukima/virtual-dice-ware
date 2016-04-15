@@ -9,15 +9,12 @@ export default ProgressComponent.extend({
 
   completeText: 'Complete',
 
-  percent: Ember.computed('random.pollEntropyCount', function() {
-    return Math.min(this.get('random.pollEntropyCount') * 4, 100);
-  }),
+  complete: Ember.computed.alias('random.initialEntropyComplete'),
+  percent: Ember.computed.alias('random.initialEntropyPercent'),
 
   styleWidth: Ember.computed('percent', function() {
     return Ember.String.htmlSafe(`width: ${this.get('percent')}%;`);
   }),
-
-  complete: Ember.computed.equal('percent', 100),
 
   meterType: Ember.computed('complete', 'isPolling', function() {
     if (!this.get('isPolling')) {
