@@ -8,7 +8,7 @@
 
     <p>Die rolls are random based on {{#link-to "about"}}GRC's Ultra High Entropy Pseudo Random Number Generator{{/link-to}}. You can see this in the {{#link-to "entropy"}}Entropy Viewer{{/link-to}}.</p>
 
-    {{#if waitingForinitialEntropy}}
+    {{#if waitingForInitialEntropy}}
       {{#bs-alert type="info" dismissible=false}}
         <p>
           Waiting for Entropy Harvesting…
@@ -17,8 +17,14 @@
       {{/bs-alert}}
     {{/if}}
 
+    {{#if pollingPaused}}
+      {{#bs-alert type="warning" dismissible=false}}
+        <p>{{#link-to "entropy"}}Entropy Harvesting{{/link-to}} is paused.</p>
+      {{/bs-alert}}
+    {{/if}}
+
     {{#bs-form-group}}
-      {{#bs-button action="generate" type="primary" class="btn-lg" disabled=waitingForinitialEntropy}}
+      {{#bs-button action="generate" type="primary" class="btn-lg" disabled=waitingForInitialEntropy}}
         Generate passcode
       {{/bs-button}}
     {{/bs-form-group}}

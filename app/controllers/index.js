@@ -16,7 +16,8 @@ export default Ember.Controller.extend({
   random: Ember.inject.service(),
   application: Ember.inject.controller(),
   words: Ember.computed.alias('application.model'),
-  waitingForinitialEntropy: Ember.computed.not('random.initialEntropyComplete'),
+  waitingForInitialEntropy: Ember.computed.not('random.initialEntropyComplete'),
+  pollingPaused: Ember.computed.not('random.pollingEnabled'),
 
   passcodes: [],
   lastDieRolls: [],
