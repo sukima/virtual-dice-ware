@@ -1,6 +1,6 @@
 {
   "name": "virtual-dice-ware",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Website to build random passwords with virtual dice",
   "private": true,
   "directories": {
