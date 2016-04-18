@@ -8,18 +8,18 @@
 
     <p>Die rolls are random based on {{#link-to "about"}}GRC's Ultra High Entropy Pseudo Random Number Generator{{/link-to}}. You can see this in the {{#link-to "entropy"}}Entropy Viewer{{/link-to}}.</p>
 
-    {{#if pollingPaused}}
+    {{#liquid-if pollingPaused}}
       {{#bs-alert type="warning" dismissible=false}}
         <p>{{#link-to "entropy"}}Entropy Harvesting{{/link-to}} is paused.</p>
       {{/bs-alert}}
-    {{else}}{{#if waitingForInitialEntropy}}
+    {{else}}{{#liquid-if waitingForInitialEntropy}}
       {{#bs-alert type="info" dismissible=false}}
         <p>
           Waiting for Entropy Harvesting…
           <span class="glyphicon glyphicon-hourglass"></span>
         </p>
       {{/bs-alert}}
-    {{/if}}{{/if}}
+    {{/liquid-if}}{{/liquid-if}}
 
     {{#bs-form-group}}
       {{#bs-button action="generate" type="primary" class="btn-lg" disabled=waitingForInitialEntropy}}
@@ -32,7 +32,7 @@
       {{bs-input type="number" value=numberOfDice}}
     {{/bs-form-group}}
 
-    {{#if lastDieRolls}}
+    {{#liquid-if lastDieRolls}}
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Passcode Generation Result</h3>
@@ -43,19 +43,21 @@
                        noResultsText=false}}
         </div>
       </div>
-    {{/if}}
+    {{/liquid-if}}
   </div>
 
   <div class="col-md-6">
-    <table class="table">
-      <tbody>
-        {{#each passcodes as |passcode index|}}
-          <tr>
-            <td>{{one-based index}}</td>
-            <td><code>{{passcode}}</code></td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    {{#liquid-spacer}}
+      <table class="table">
+        <tbody>
+          {{#each passcodes as |passcode index|}}
+            <tr>
+              <td>{{one-based index}}</td>
+              <td><code>{{passcode}}</code></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/liquid-spacer}}
   </div>
 </div>
