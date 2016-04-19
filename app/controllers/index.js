@@ -49,7 +49,7 @@ export default Ember.Controller.extend({
   actions: {
     generate() {
       this.set('lastDieRolls', this.rollDice());
-      this.get('passcodes').pushObject(this.generatePasscode());
+      this.get('passcodes').unshiftObject(this.generatePasscode());
     }
   }
 });

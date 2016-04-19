@@ -52,7 +52,7 @@
         <tbody>
           {{#each passcodes as |passcode index|}}
             <tr>
-              <td>{{one-based index}}</td>
+              <td>{{minus passcodes.length index}}</td>
               <td><code>{{passcode}}</code></td>
             </tr>
           {{/each}}
