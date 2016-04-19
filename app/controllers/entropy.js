@@ -10,9 +10,7 @@ export default Ember.Controller.extend({
 
   actions: {
     togglePolling() {
-      const random = this.get('random');
-      random.toggleProperty('pollingEnabled');
-      random.pollEntropy();
+      this.get('random').togglePolling();
     }
   }
 });

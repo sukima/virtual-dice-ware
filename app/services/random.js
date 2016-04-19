@@ -32,5 +32,10 @@ export default Ember.Service.extend({
 
   dieRoll(sides=6) {
     return this.get('generator')(sides) + 1;
+  },
+
+  togglePolling() {
+    this.toggleProperty('pollingEnabled');
+    this.pollEntropy();
   }
 });

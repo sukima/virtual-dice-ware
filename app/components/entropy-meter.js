@@ -27,7 +27,6 @@ export default ProgressComponent.extend({
   }),
 
   click() {
-    this.toggleProperty('isPolling');
-    this.get('random').pollEntropy();
+    this.get('random').toggleProperty();
   }
 });
