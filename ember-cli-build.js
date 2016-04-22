@@ -23,6 +23,8 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('bower_components/grc-uheprng/uheprng.js');
+  app.import('bower_components/add-to-homescreen/src/addtohomescreen.js');
+  app.import('bower_components/add-to-homescreen/style/addtohomescreen.css');
 
   return app.toTree();
 };
