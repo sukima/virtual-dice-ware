@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+   <div class="clickable panel-heading" {{action toggle}}>
+    <h3 class="panel-title">
+      <span class="glyphicon {{if collapsed 'glyphicon-triangle-right' 'glyphicon-triangle-bottom'}}"></span>
+      {{title}}
+    </h3>
+  </div>
+  {{#bs-collapse collapsed=collapsed}}
+    <div class="panel-body">
+      {{yield}}
+    </div>
+  {{/bs-collapse}}
+</div>
