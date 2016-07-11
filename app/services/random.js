@@ -1,41 +1,53 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
+
+const {
+  Service, get, set,
+  computed, computed: { alias, equal }
+} = Ember;
 
 const SAMPLE_SIZE = 256;
 const REHASH_INTERVAL = 200;
 
-export default Ember.Service.extend({
-  pollingEnabled: true,
-  initialEntropyPercent: Ember.computed('pollEntropyCount', function() {
-    return Math.min(this.get('pollEntropyCount') * 4, 100);
+export default Service.extend({
+  isPolling: alias('harvestTask.isRunning'),
+
+  initialEntropyPercent: computed('pollEntropyCount', {
+    get() {
+      return Math.min(get(this, 'pollEntropyCount') * 4, 100);
+    }
   }),
-  initialEntropyComplete: Ember.computed.equal('initialEntropyPercent', 100),
+  initialEntropyComplete: equal('initialEntropyPercent', 100),
 
   init() {
-    this.set('pollEntropyCount', 0);
-    this.set('generator', uheprng());
-    this.pollEntropy();
+    this._super(...arguments);
+    set(this, 'pollEntropyCount', 0);
+    set(this, 'sample', '');
+    set(this, 'generator', uheprng());
+    get(this, 'harvestTask').perform();
   },
 
   addEntropy(...garbage) {
-    const generator = this.get('generator');
+    const generator = get(this, 'generator');
     generator.addEntropy(...garbage);
-    this.set('sample', generator.string(SAMPLE_SIZE));
-  },
-
-  pollEntropy() {
-    if (this.get('pollingEnabled')) {
-      this.addEntropy();
-      this.incrementProperty('pollEntropyCount');
-      Ember.run.later(this, 'pollEntropy', REHASH_INTERVAL);
-    }
+    set(this, 'sample', generator.string(SAMPLE_SIZE));
   },
 
   dieRoll(sides=6) {
-    return this.get('generator')(sides) + 1;
+    return get(this, 'generator')(sides) + 1;
   },
 
+  harvestTask: task(function * () {
+    while (true) {
+      this.addEntropy();
+      this.incrementProperty('pollEntropyCount');
+      yield timeout(REHASH_INTERVAL);
+    }
+  }).drop(),
+
   togglePolling() {
-    this.toggleProperty('pollingEnabled');
-    this.pollEntropy();
+    const harvestTask = get(this, 'harvestTask');
+    const method = get(harvestTask, 'isRunning') ? 'cancelAll' : 'perform';
+    harvestTask[method]();
   }
 });

@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'footer',
   classNames: ['footer', 'container-fluid'],
 
-  randomPaused: Ember.computed.not('random.pollingEnabled'),
+  randomPaused: Ember.computed.not('random.isPolling'),
   randomInitializing: Ember.computed.not('random.initialEntropyComplete'),
 
   statusClass: Ember.computed('randomPaused', 'randomInitializing', function() {
