@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 const {
   Service, get, set,
@@ -9,7 +10,7 @@ const SAMPLE_SIZE = 256;
 const REHASH_INTERVAL = 200;
 
 export default Service.extend({
-  pollingEnabled: true,
+  isPolling: alias('harvestTask.isRunning'),
 
   initialEntropyPercent: computed('pollEntropyCount', {
     get() {
@@ -23,7 +24,7 @@ export default Service.extend({
     set(this, 'pollEntropyCount', 0);
     set(this, 'sample', '');
     set(this, 'generator', uheprng());
-    this.pollEntropy();
+    get(this, 'harvestTask').perform();
   },
 
   addEntropy(...garbage) {
@@ -36,16 +37,17 @@ export default Service.extend({
     return get(this, 'generator')(sides) + 1;
   },
 
-  pollEntropy() {
-    if (get(this, 'pollingEnabled')) {
+  harvestTask: task(function * () {
+    while (true) {
       this.addEntropy();
       this.incrementProperty('pollEntropyCount');
-      Ember.run.later(this, 'pollEntropy', REHASH_INTERVAL);
+      yield timeout(REHASH_INTERVAL);
     }
-  },
+  }).drop(),
 
   togglePolling() {
-    this.toggleProperty('pollingEnabled');
-    this.pollEntropy();
+    const harvestTask = get(this, 'harvestTask');
+    const method = get(harvestTask, 'isRunning') ? 'cancelAll' : 'perform';
+    harvestTask[method]();
   }
 });

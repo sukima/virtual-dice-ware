@@ -5,7 +5,7 @@ export default ProgressComponent.extend({
   random: Ember.inject.service(),
   classNames: ['entropy-meter', 'clickable'],
 
-  isPolling: Ember.computed.alias('random.pollingEnabled'),
+  isPolling: Ember.computed.alias('random.isPolling'),
 
   completeText: 'Complete',
 
