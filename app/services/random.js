@@ -1,6 +1,6 @@
 /* globals uheprng */
 import Service from '@ember/service';
-import { computed, set, get } from '@ember/object';
+import { computed } from '@ember/object';
 import { equal, alias } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 const { min } = Math;
@@ -13,27 +13,27 @@ export default Service.extend({
 
   initialEntropyPercent: computed('pollEntropyCount', {
     get() {
-      return min(get(this, 'pollEntropyCount') * 4, 100);
+      return min(this.get('pollEntropyCount') * 4, 100);
     }
   }),
   initialEntropyComplete: equal('initialEntropyPercent', 100),
 
   init() {
     this._super(...arguments);
-    set(this, 'pollEntropyCount', 0);
-    set(this, 'sample', '');
-    set(this, 'generator', uheprng());
-    get(this, 'harvestTask').perform();
+    this.set('pollEntropyCount', 0);
+    this.set('sample', '');
+    this.set('generator', uheprng());
+    this.get('harvestTask').perform();
   },
 
   addEntropy(...garbage) {
-    const generator = get(this, 'generator');
+    const generator = this.get('generator');
     generator.addEntropy(...garbage);
-    set(this, 'sample', generator.string(SAMPLE_SIZE));
+    this.set('sample', generator.string(SAMPLE_SIZE));
   },
 
   dieRoll(sides=6) {
-    return get(this, 'generator')(sides) + 1;
+    return this.get('generator')(sides) + 1;
   },
 
   harvestTask: task(function * () {
@@ -45,7 +45,7 @@ export default Service.extend({
   }).drop(),
 
   togglePolling() {
-    const harvestTask = get(this, 'harvestTask');
+    const harvestTask = this.get('harvestTask');
     const method = get(harvestTask, 'isRunning') ? 'cancelAll' : 'perform';
     harvestTask[method]();
   }
