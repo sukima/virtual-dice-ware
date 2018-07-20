@@ -18,7 +18,7 @@
     "deploy": "ember github-pages:commit --environment=production && git push origin gh-pages && git checkout master"
   },
   "devDependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^3.0.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-bootstrap": "^2.0.0",

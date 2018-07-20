@@ -1,17 +1,20 @@
-{{#bs-progress-bar animate=isPolling
-                   striped=true
-                   showLabel=true
-                   type=meterType
-                   value=percent
-                   minValue=0
-                   maxValue=100 as |percent|}}
-  {{#if isPolling}}
-    {{#if complete}}
-      Harvesting Entropy
+{{#bs-progress as |p|}}
+  {{#p.bar
+      animate=isPolling
+      striped=true
+      showLabel=true
+      type=meterType
+      value=percent
+      minValue=0
+      maxValue=100 as |percent|}}
+    {{#if isPolling}}
+      {{#if complete}}
+        Harvesting Entropy
+      {{else}}
+        Initializing… {{percent}}
+      {{/if}}
     {{else}}
-      Initializing… {{percent}}
+      Paused Entropy Harvesting
     {{/if}}
-  {{else}}
-    Paused Entropy Harvesting
-  {{/if}}
-{{/bs-progress-bar}}
+  {{/p.bar}}
+{{/bs-progress}}

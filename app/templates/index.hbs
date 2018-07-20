@@ -21,16 +21,18 @@
       {{/bs-alert}}
     {{/liquid-if}}{{/liquid-if}}
 
-    {{#bs-form-group}}
-      {{#bs-button action="generate" type="primary" class="btn-lg" disabled=waitingForInitialEntropy}}
-        Generate passcode
-      {{/bs-button}}
-    {{/bs-form-group}}
+    {{#bs-form as |form|}}
+      {{#form.group}}
+        {{#bs-button onClick=(action "generate") type="primary" class="btn-lg" disabled=waitingForInitialEntropy}}
+          Generate passcode
+        {{/bs-button}}
+      {{/form.group}}
 
-    {{#bs-form-group}}
-      <label class="control-label">Number of words in passcode</label>
-      {{bs-input type="number" value=numberOfDice}}
-    {{/bs-form-group}}
+      {{#form.group}}
+        <label class="control-label">Number of words in passcode</label>
+        {{form.input type="number" value=numberOfDice}}
+      {{/form.group}}
+    {{/bs-form}}
 
     {{#liquid-if lastDieRolls}}
       <div class="panel panel-default">

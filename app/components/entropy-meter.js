@@ -2,7 +2,7 @@ import { htmlSafe } from '@ember/template';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import ProgressComponent from 'ember-bootstrap/components/bs-progress';
+import ProgressComponent from 'ember-bootstrap/components/base/bs-progress';
 
 export default ProgressComponent.extend({
   random: service(),

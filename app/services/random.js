@@ -46,7 +46,7 @@ export default Service.extend({
 
   togglePolling() {
     const harvestTask = this.get('harvestTask');
-    const method = get(harvestTask, 'isRunning') ? 'cancelAll' : 'perform';
+    const method = this.get('harvestTask.isRunning') ? 'cancelAll' : 'perform';
     harvestTask[method]();
   }
 });
