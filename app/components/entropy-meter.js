@@ -1,22 +1,25 @@
-import Ember from 'ember';
+import { htmlSafe } from '@ember/template';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import ProgressComponent from 'ember-bootstrap/components/bs-progress';
 
 export default ProgressComponent.extend({
-  random: Ember.inject.service(),
+  random: service(),
   classNames: ['entropy-meter', 'clickable'],
 
-  isPolling: Ember.computed.alias('random.isPolling'),
+  isPolling: alias('random.isPolling'),
 
   completeText: 'Complete',
 
-  complete: Ember.computed.alias('random.initialEntropyComplete'),
-  percent: Ember.computed.alias('random.initialEntropyPercent'),
+  complete: alias('random.initialEntropyComplete'),
+  percent: alias('random.initialEntropyPercent'),
 
-  styleWidth: Ember.computed('percent', function() {
-    return Ember.String.htmlSafe(`width: ${this.get('percent')}%;`);
+  styleWidth: computed('percent', function() {
+    return htmlSafe(`width: ${this.get('percent')}%;`);
   }),
 
-  meterType: Ember.computed('complete', 'isPolling', function() {
+  meterType: computed('complete', 'isPolling', function() {
     if (!this.get('isPolling')) {
       return 'warning';
     } else if (this.get('complete')) {

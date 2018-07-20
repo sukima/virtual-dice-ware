@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'nav',
 
-  isFirstPage: Ember.computed('page', 'firstPage', function() {
+  isFirstPage: computed('page', 'firstPage', function() {
     return this.get('page') === this.get('firstPage');
   }),
 
-  isLastPage: Ember.computed('page', 'lastPage', function() {
+  isLastPage: computed('page', 'lastPage', function() {
     return this.get('page') === this.get('lastPage');
   }),
 

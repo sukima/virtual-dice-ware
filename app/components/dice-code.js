@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'span',
 
-  keys: Ember.computed('code', function() {
+  keys: computed('code', function() {
     return this.get('code').split('');
   }),
 
-  dice: Ember.computed('keys', function() {
+  dice: computed('keys', function() {
     return this.get('keys').map(die => `die-${die}.svg`);
   })
 });

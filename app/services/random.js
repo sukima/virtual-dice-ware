@@ -1,10 +1,7 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { computed, set, get } from '@ember/object';
+import { equal, alias } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
-
-const {
-  Service, get, set,
-  computed, computed: { alias, equal }
-} = Ember;
 
 const SAMPLE_SIZE = 256;
 const REHASH_INTERVAL = 200;

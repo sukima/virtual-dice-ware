@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { alias, not } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 
 // From http://stackoverflow.com/a/6274381/227176
 function shuffle(a, random) {
@@ -12,12 +14,12 @@ function shuffle(a, random) {
   return a;
 }
 
-export default Ember.Controller.extend({
-  random: Ember.inject.service(),
-  application: Ember.inject.controller(),
-  words: Ember.computed.alias('application.model'),
-  waitingForInitialEntropy: Ember.computed.not('random.initialEntropyComplete'),
-  pollingPaused: Ember.computed.not('random.isPolling'),
+export default Controller.extend({
+  random: service(),
+  application: controller(),
+  words: alias('application.model'),
+  waitingForInitialEntropy: not('random.initialEntropyComplete'),
+  pollingPaused: not('random.isPolling'),
 
   passcodes: [],
   lastDieRolls: [],

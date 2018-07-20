@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  random: Ember.inject.service(),
+export default Controller.extend({
+  random: service(),
 
-  sampleDice: Ember.computed('random.sample', function() {
+  sampleDice: computed('random.sample', function() {
     return this.get('random.sample').split('')
       .map(rndChar => rndChar.charCodeAt(0) % 6 + 1);
   }),

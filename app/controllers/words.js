@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Controller, { inject as controller } from '@ember/controller';
 
 const PAGE_SIZE = 50;
 
@@ -6,9 +8,9 @@ function withinBounds(num, min, max) {
   return Math.min(Math.max(num, min), max);
 }
 
-export default Ember.Controller.extend({
-  application: Ember.inject.controller(),
-  words: Ember.computed.alias('application.model'),
+export default Controller.extend({
+  application: controller(),
+  words: alias('application.model'),
 
   queryParams: {
     page: true,
@@ -19,15 +21,15 @@ export default Ember.Controller.extend({
   searchBy: '',
 
   firstPage: 1,
-  lastPage: Ember.computed('filteredKeys.length', function() {
+  lastPage: computed('filteredKeys.length', function() {
     return Math.ceil(this.get('filteredKeys.length') / PAGE_SIZE);
   }),
 
-  wordKeys: Ember.computed('words', function() {
+  wordKeys: computed('words', function() {
     return Object.keys(this.get('words'));
   }),
 
-  filteredKeys: Ember.computed('wordKeys.[]', 'searchBy', function() {
+  filteredKeys: computed('wordKeys.[]', 'searchBy', function() {
     const searchBy = this.get('searchBy');
     const wordKeys = this.get('wordKeys');
     if (searchBy !== '') {
@@ -37,7 +39,7 @@ export default Ember.Controller.extend({
     }
   }),
 
-  paginatedKeys: Ember.computed('filteredKeys.[]', 'page', function() {
+  paginatedKeys: computed('filteredKeys.[]', 'page', function() {
     const filteredKeys = this.get('filteredKeys');
     const page = this.get('page') - 1;
     const pos = (page * PAGE_SIZE);
