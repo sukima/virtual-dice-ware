@@ -6,6 +6,12 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     svg: {
       paths: ['public/images']
+    },
+
+    'ember-bootstrap': {
+      'bootstrapVersion': 4,
+      'importBootstrapFont': false,
+      'importBootstrapCSS': true
     }
   });
 
