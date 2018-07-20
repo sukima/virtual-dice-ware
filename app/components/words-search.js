@@ -24,7 +24,7 @@ export default Component.extend({
 
   actionUp: observer('_value', function() {
     if (this.get('valueIsValid')) {
-      this.attrs.update(this.get('_value'));
+      this.get('update')(this.get('_value'));
     }
   })
 });

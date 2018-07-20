@@ -17,13 +17,17 @@ function shuffle(a, random) {
 export default Controller.extend({
   random: service(),
   application: controller(),
+  numberOfDice: 6,
+
   words: alias('application.model'),
   waitingForInitialEntropy: not('random.initialEntropyComplete'),
   pollingPaused: not('random.isPolling'),
 
-  passcodes: [],
-  lastDieRolls: [],
-  numberOfDice: 6,
+  init() {
+    this._super(...arguments);
+    this.set('passcodes', []);
+    this.set('lastDieRolls', []);
+  },
 
   rollDice() {
     const random = this.get('random');

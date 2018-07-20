@@ -14,19 +14,19 @@ export default Component.extend({
 
   actions: {
     first() {
-      this.attrs.gotoPage(this.get('firstPage'));
+      this.get('gotoPage')(this.get('firstPage'));
     },
 
     prev() {
-      this.attrs.gotoPage(this.get('page') - 1);
+      this.get('gotoPage')(this.get('page') - 1);
     },
 
     next() {
-      this.attrs.gotoPage(this.get('page') + 1);
+      this.get('gotoPage')(this.get('page') + 1);
     },
 
     last() {
-      this.attrs.gotoPage(this.get('lastPage'));
+      this.get('gotoPage')(this.get('lastPage'));
     }
   }
 });
