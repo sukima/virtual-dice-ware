@@ -15,7 +15,7 @@
     "lint:js": "eslint ./*.js app blueprints config lib server tests",
     "start": "ember serve",
     "test": "ember test",
-    "deploy": "ember github-pages:commit --environment=production && git push origin gh-pages && git checkout master"
+    "deploy": "ember deploy production"
   },
   "devDependencies": {
     "bootstrap": "^3.0.0",
@@ -26,6 +26,9 @@
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-deploy": "^1.0.2",
+    "ember-cli-deploy-build": "^1.1.1",
+    "ember-cli-deploy-ghpages": "^0.2.0",
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
