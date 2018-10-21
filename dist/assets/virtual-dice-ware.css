@@ -1,0 +1,93 @@
+.entropy-meter {
+  width: 200px;
+}
+
+.entropy-viewer {
+  max-width: 500px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.die {
+  width: 32px;
+  height: 32px;
+}
+
+.word-list-item {
+  font-size: 1.4em;
+}
+
+/* Sticky Footer */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  padding: 0;
+  box-shadow: -2px 0 2px;
+}
+
+.tab-bar ul {
+  display: table;
+  table-layout: fixed;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-bar li {
+  list-style-type: none;
+  display: table-cell;
+  width: 20%;
+  height: 60px;
+  vertical-align: bottom;
+  color: #fff;
+}
+
+.tab-bar .glyphicon {
+  font-size: 1.4em;
+}
+
+.tab-bar.initializing li {
+  background-color: #d9edf7;
+  color: #31708f;
+}
+
+.tab-bar.initializing li.active {
+  background-color: #5bc0de;
+  color: #fff;
+}
+
+.tab-bar.unpaused li {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.tab-bar.unpaused li.active {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
+.tab-bar.paused li {
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+}
+
+.tab-bar.paused li.active {
+  background-color: #f0ad4e;
+  color: #fff;
+}
