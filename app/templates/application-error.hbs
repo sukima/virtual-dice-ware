@@ -1,0 +1,18 @@
+{{nav-bar class="navbar-default hidden-xs hidden-sm"}}
+
+<div class="container">
+  <h1>Error</h1>
+
+  <div class="alert alert-danger">
+    {{#if is.MissingWordListError}}
+      <p>We were unable to retrieve the word list needed for this application to function.</p>
+      <p>Please try refreshing in a minute.</p>
+    {{else}}
+      <p>{{error}}</p>
+    {{/if}}
+
+    <p>If this problem persists please feel free to <a href="https://github.com/sukima/virtual-dice-ware/issues/new">open an issue</a> to let me know.</p>
+  </div>
+</div>
+
+{{tab-bar class="hidden-md hidden-lg"}}
