@@ -1,12 +1,14 @@
 {{#bs-form as |form|}}
   <div class="form-group {{if valueInvalid 'has-error'}}">
-    {{form.input
-        type="number"
-        value=_value
+    {{form.element
+        controlType="text"
+        placeholder="Filter by number"
+        value=value
         disabled=disabled
-        placeholder="Filter by number"}}
+        onChange=(action update)}}
   </div>
 {{/bs-form}}
+
 {{#bs-alert dismissible=false type="warning" visible=valueInvalid}}
   Only 1 to 5 digits and they must be numbers on a six sided die (1-6).
 {{/bs-alert}}
