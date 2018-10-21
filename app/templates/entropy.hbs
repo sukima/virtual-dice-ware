@@ -10,8 +10,9 @@
   <div class="col-md-6">
     <p>
       This is the active entropy in the system at this time.
-      {{bs-button action="togglePolling"
-                  defaultText=(if random.isPolling 'Pause' 'Resume')}}
+      {{bs-button
+          defaultText=(if random.isPolling 'Pause' 'Resume')
+          onClick=(action "togglePolling")}}
     </p>
   </div>
 </div>
