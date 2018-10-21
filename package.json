@@ -1,6 +1,6 @@
 {
   "name": "virtual-dice-ware",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Website to build random passwords with virtual dice",
   "private": true,
   "license": "MIT",
